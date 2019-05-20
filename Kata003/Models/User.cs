@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Threading;
 
 namespace Kata003.Models
@@ -18,21 +19,17 @@ namespace Kata003.Models
             FirstName = firstName;
             LastName = lastName;
             Created = DateTime.UtcNow;
-            CreateUserName();
-            UpdateExpiredDateInternal();
         }
 
-        private void CreateUserName()
-        {
-            UserName = $"{ID}_{LastName}";
-        }
+        public void CreateUserName() => UserName = $"{ID}_{LastName}";
 
-        internal void UpdateExpiredDateInternal()
+        public void UpdateExpiredDateInternal()
         {
             if (ID > 100 && Expires < DateTime.UtcNow.AddDays(-5))
             {
                 Expires = DateTime.UtcNow.AddDays(10);
-            } else if (Expires < DateTime.UtcNow)
+            }
+            else if (Expires < DateTime.UtcNow)
             {
                 if (ID < 10 || ID > 80)
                 {
@@ -42,26 +39,33 @@ namespace Kata003.Models
                     }
                     else
                     {
-                        if (Expires > DateTime.UtcNow)
-                        {
-                            Expires = DateTime.UtcNow.AddDays(90);
-                        }
-                        else
-                        {
+                        //if (Expires > DateTime.UtcNow)
+                        //{
+                        //    Expires = DateTime.UtcNow.AddDays(90);
+                        //}
+                        //else
+                        //{
                             Expires = DateTime.UtcNow.AddDays(70);
-                        }
+                        //}
                     }
                 }
-               
+
             }
-            else if (Expires < DateTime.UtcNow && ID < 1000)
-            {
-                Expires = DateTime.UtcNow.AddDays(100);
-            } else 
+            //else if (Expires < DateTime.UtcNow && ID < 1000)
+            //{
+            //    Expires = DateTime.UtcNow.AddDays(100);
+            //}
+            else
             {
                 Expires = DateTime.UtcNow.AddDays(10);
             }
         }
+
+        //private bool FindByCondition(Expression<Func<bool, bool>> expression)
+        //{
+        //    var user = new User(11, "Antonio", "Acosta");
+        //    return user.(expression);
+        //}
 
         public void ResetExpires()
         {
