@@ -80,5 +80,21 @@ namespace Kata003.Test
             // Assert
             Assert.Equal(DateTime.UtcNow.AddDays(10).Date, user.Expires.Date);
         }
+
+        [Fact]
+        public void Reset_Expires()
+        {
+            var user = new User(101, "Antonio", "Acosta")
+            {
+                Expires = DateTime.UtcNow.AddDays(100)
+            };
+
+            //Act
+            user.ResetExpires();
+
+            // Assert
+            Assert.NotNull(user);
+        }
+
     }
 }
