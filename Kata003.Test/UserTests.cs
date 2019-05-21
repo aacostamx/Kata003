@@ -32,18 +32,16 @@ namespace Kata003.Test
             Assert.Equal(default, user.Expires.Date);
         }
 
-        /// <summary>
-        /// ID must be bigger than 100 and Expire less than UtcNow - 5 days
-        /// </summary>
         [Fact]
         public void Update_Expired_Date_Internal_Ten()
         {
             // Arrange
             var user = new User(101, "Antonio", "Acosta")
             {
-                // Act
                 Expires = DateTime.UtcNow.AddDays(-5)
             };
+
+            //Act
             user.UpdateExpiredDateInternal();
 
             // Assert
@@ -56,9 +54,10 @@ namespace Kata003.Test
             // Arrange
             var user = new User(101, "Antonio", "Acosta")
             {
-                // Act
                 Expires = DateTime.UtcNow.AddDays(-3)
             };
+
+            //Act
             user.UpdateExpiredDateInternal();
 
             // Assert
@@ -66,5 +65,20 @@ namespace Kata003.Test
         }
 
 
+        [Fact]
+        public void Update_Expired_Date_Internal_Ten_Else()
+        {
+            // Arrange
+            var user = new User(11, "Antonio", "Acosta")
+            {
+                Expires = DateTime.UtcNow.AddDays(1)
+            };
+
+            //Act
+            user.UpdateExpiredDateInternal();
+
+            // Assert
+            Assert.Equal(DateTime.UtcNow.AddDays(10).Date, user.Expires.Date);
+        }
     }
 }

@@ -11,6 +11,10 @@ namespace Kata003.Models
         public int ID { get; private set; }
         public DateTime Created { get; set; }
         public DateTime Expires { get; set; }
+        public bool ID_Greater_Than(int number) => ID > number;
+        public bool ID_Less_Than(int number) => ID < number;
+        public bool Expires_Less_Than(int number) => Expires < DateTime.UtcNow.AddDays(number);
+        public bool Expires_Less_Than_Now() => Expires < DateTime.UtcNow;
 
         public User(int id, string firstName = "", string lastName = "")
         {
@@ -29,35 +33,19 @@ namespace Kata003.Models
 
         public void UpdateExpiredDateInternal()
         {
-            if (ID > 100 && Expires < DateTime.UtcNow.AddDays(-5))
+            if (ID_Greater_Than(100) && Expires_Less_Than(-5))
             {
                 Expires = DateTime.UtcNow.AddDays(10);
             }
-            else if (Expires < DateTime.UtcNow)
+            else if (Expires_Less_Than_Now())
             {
-                if (ID < 10 || ID > 80)
+                if (ID_Less_Than(10) || ID_Greater_Than(80))
                 {
-                    if (Expires < DateTime.UtcNow.AddDays(5))
+                    if (Expires_Less_Than(5))
                     {
                         Expires = DateTime.UtcNow.AddDays(60);
                     }
-                    else
-                    {
-                        if (Expires > DateTime.UtcNow)
-                        {
-                            Expires = DateTime.UtcNow.AddDays(90);
-                        }
-                        else
-                        {
-                            Expires = DateTime.UtcNow.AddDays(70);
-                        }
-                    }
                 }
-
-            }
-            else if (Expires < DateTime.UtcNow && ID < 1000)
-            {
-                Expires = DateTime.UtcNow.AddDays(100);
             }
             else
             {
