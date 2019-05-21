@@ -1,5 +1,4 @@
-﻿using Kata003.Models;
-using System;
+﻿using System;
 
 namespace Kata003
 {
@@ -7,10 +6,7 @@ namespace Kata003
     {
         static void Main(string[] args)
         {
-            //var user = new User(11, "Antonio", "Acosta");
-            //user.Expires = DateTime.UtcNow.AddDays(1);
-            //user.UpdateExpiredDateInternal();
-            //user.ResetExpires();
+
         }
     }
 }

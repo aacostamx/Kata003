@@ -39,10 +39,11 @@ namespace Kata003.Test
         public void Update_Expired_Date_Internal_Ten()
         {
             // Arrange
-            var user = new User(101, "Antonio", "Acosta");
-
-            // Act
-            user.Expires = DateTime.UtcNow.AddDays(-5);
+            var user = new User(101, "Antonio", "Acosta")
+            {
+                // Act
+                Expires = DateTime.UtcNow.AddDays(-5)
+            };
             user.UpdateExpiredDateInternal();
 
             // Assert
@@ -53,10 +54,11 @@ namespace Kata003.Test
         public void Update_Expired_Date_Internal_Sixty()
         {
             // Arrange
-            var user = new User(101, "Antonio", "Acosta");
-
-            // Act
-            user.Expires = DateTime.UtcNow.AddDays(-3);
+            var user = new User(101, "Antonio", "Acosta")
+            {
+                // Act
+                Expires = DateTime.UtcNow.AddDays(-3)
+            };
             user.UpdateExpiredDateInternal();
 
             // Assert

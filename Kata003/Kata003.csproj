@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -10,5 +10,14 @@
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Interface\**" />
+    <Compile Remove="Service\**" />
+    <EmbeddedResource Remove="Interface\**" />
+    <EmbeddedResource Remove="Service\**" />
+    <None Remove="Interface\**" />
+    <None Remove="Service\**" />
+  </ItemGroup>
 
 </Project>
